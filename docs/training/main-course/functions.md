@@ -45,6 +45,12 @@ A function-call is done simply writing the function-name following a `tuple` of 
 The number of parameters equal the number of call-arguments
 Also the order of the call-parameter must match the order of function-paramaters: During the function-call the 1.st call-argument is mapped to the 1.st function-parameter, the 2.nd call-argument is mapped to the 2.nd function-parameter, i.e a position-based mapping from the call-arguments to the function-parameters (call-arguments are ***positional arguments***)
 
+Let's give it a try
+
+--8<--
+lessons/palindroms.md
+--8<--
+
 ## Function with optional parameters ##
 
 Optional parameters are parameters with assigned default values in the function-definition. Those optional parameters may be omitted during the function-call.
