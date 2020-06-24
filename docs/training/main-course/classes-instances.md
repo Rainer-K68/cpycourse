@@ -484,6 +484,8 @@ Callable classes are classes where the class-instances can simply be called as a
 >>>
 ```
 
+
+
 ***Usage of a callable instance*** 
 
 ``` python
@@ -496,6 +498,14 @@ name = foo
 name = foo
 >>> 
 ```
+
+
+Let's give it a try
+
+--8<--
+lessons/customer.md
+--8<--
+
 
 ## Class Decorators
 
@@ -604,6 +614,7 @@ It should be mentioned that Python also supports techniques for meta-programming
 ## Further readings on classes
 
  Please refer to the Python docs about [Classes](https://docs.python.org/3/tutorial/classes.html).
+ 
 
 
 

@@ -116,17 +116,12 @@ operations.
 otherwise.
 
 
-## Immutable/mutable Objects
+## Immutable and Mutable Objects
 
 The mutability/immutability of object-values is defined by its type:
 
  1. immutable types: `str`, `int`, `float`, `complex`, `tuple`, `frozenset`
  2. mutable types: `list`, `dict`, `set`, user-defined objects (classes)
-
-Changing the value of variable pointing to an immutable type causes a copy of the original referenced/underlying Python object. This is sometimes called "copy-on-write".
-
-Changing the value of a variable pointing to a mutable type just changes that value.
-
 
 ### Examples: immutable types
 

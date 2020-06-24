@@ -296,7 +296,7 @@ explicitly denotes the source code file encding.
 The default Python source code encoding is
 [UTF-8](https://en.wikipedia.org/wiki/UTF-8).
 
-### Line continuation
+### Line Continuation
 
 Usually a statement ends with a newline. If long statements need to be
 formatted to span multiple lines for readability the line continuation
@@ -368,6 +368,139 @@ lines:
 This can be handy e.g. for formatting function calls with longer string
 parameters (i.e. not so short as in this example...).
 
+### Annotations
+
+#### Function Annotations
+
+Optional function annotations can be used e.g. as a means to more clearly
+document the type(s) of arguments a function (or method) expects:
+
+``` python
+def say_hello(name: str) -> str:
+    return 'Hello {}!'.format(name)
+```
+
+This information can be accessed at runtime:
+
+``` python
+>> def say_hello(name: str) -> str:  
+...     return 'Hello {}!'.format(name)
+... 
+>>> say_hello.__annotations__
+{'name': <class 'str'>, 'return': <class 'str'>}
+>>> 
+```
+
+Note that the Python interpreter *does not* do any type checking using this
+information:
+
+``` python
+>>> say_hello('Lisa')
+'Hello Lisa!'
+>>> say_hello(8.5)
+'Hello 8.5!'
+>>> 
+```
+
+A function annotation is actually an expression i.e. not necessarily limited
+to a type. The expression is evaluated at function definition execution:
+
+``` python
+>>> def say_hello(name: 'what' + '?') -> 7+3:  
+...     return 'Hello {}!'.format(name)
+... 
+>>> say_hello.__annotations__
+{'name': 'what?', 'return': 10}
+>>> 
+```
+
+Function annotations gain meaning by usage in libraries or tools; the Python
+interpreter does not do anything with them apart from 
+
+ - evaluating the expressions when the function definition is executed and thus
+ - "associating" this information with the function properties (i.e. its
+ parameters and return values)
+
+Function annotations can be used for several purposes, e.g.
+
+- in optional "compile time" type checkers
+ - in editors or IDEs to 
+ - to implement "generic functions" that dispatch on parameter type
+
+and more.
+
+#### Variable Annotations
+
+In the same way function parameters and return types may b annotated you can
+annotate (module, class or instance) variables:
+
+An annotated variable:
+
+``` python
+>>> x: str = "text"
+>>> x
+'text'
+```
+
+Again, the annotations can be accessed through the `__annoations__` dict:
+
+``` python
+>>> __annotations__  # module-level (here: interactive session)
+{'x': <class 'str'>}
+>>> 
+```
+
+An annotated class:
+``` python
+>>> class Knight:
+...     knows: str = 'ni'
+...     
+...     def __init__(self, words: list):
+...         self.words: str = words
+...     
+...     def say_something(self):
+...         print(self.knows)
+...     
+...     def say_something_personal(self):
+...         print(' '.join(self.words))
+... 
+>>> knight = Knight(['my', 'words'])
+>>> knight.say_something()
+ni
+>>> knight.say_something_personal()
+my words
+```
+
+Annotations are now available at class or instance level:
+``` python
+>>> Knight.__annotations__  # class level
+{'knows': <class 'str'>}
+>>> 
+>>> knight.__init__.__annotations__  # instance level
+{'words': <class 'list'>}
+>>> knight.__annotations__
+{'knows': <class 'str'>}
+>>> 
+```
+
+Like other annotations these are optional and not used by the interpeter
+itself but libraries and tools.
+
+See the [typing stdlib module
+documentation](https://docs.python.org/3/library/typing.html) for
+infrastructure with regard to (type hint) annotation.
+
+### Decorators
+
+The `@`-syntax introduces decorators:
+``` python
+>>> @some_decorator
+... def f():
+...    pass
+... 
+```
+
+See the [decorators chapter](decorators.md) for more information.
 
 ## Names and Objects
 
@@ -429,6 +562,44 @@ object)
 **Further reading**: A great in-depth explanation can be found
 [here](https://nedbatchelder.com/text/names1.html).
 
+## Python Scoping
+
+A scope defines the visibility of names. The lookup of names in Python the
+LEGB-Rule:
+
+ 1. **L**ocal
+ 1. **E**nclosing
+ 1. **G**lobal
+ 1. **B**uiltin
+
+``` python
+>>> global_x = "I'm global"
+>>> 
+>>> def f():  # functions define scope
+...     print(global_x)  # lookup in local scope (nothing), then in global
+scope
+...     
+...     def inner():
+...         local_z = "I'm local"  # a name in inner local scope
+...         print(local_z)
+...         print(enclosing_y)     # local (nothing), enclosing -> enclosing_y
+...         print(global_x)        # local (nothing), enclosing (nothing), 
+...                                # global -> global_x
+...         print('print() is a built-in!')
+...     
+...     # variable in local scope of f == enclosing scope of inner    
+...     enclosing_y = "I'm enclosing (for inner), local for f"
+...     # run inner function
+...     inner()
+... 
+>>> f()       
+I'm global
+I'm local
+I'm enclosing (for inner), local for f
+I'm global
+print() is a built-in!
+>>> 
+```
 
 ## Style guide
 
@@ -443,4 +614,3 @@ While "pythonic" can understandably not be a very well-defined term the
 [Zen of Python](https://www.python.org/dev/peps/pep-0020/) is a collection of
 Python's language design guiding principles which can also be put to good use
 in your quest to write "pythonic" code.
-
