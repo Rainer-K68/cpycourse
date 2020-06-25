@@ -39,10 +39,11 @@ nav:
             - "Chapter 6: Flow Control":  training/main-course/flow-control.md
             - "Chapter 7: Exceptions": training/main-course/exceptions.md
             - "Chapter 8: (File) Input & Output": training/main-course/io.md
-            - "Chapter 9: Modules & Packages": training/main-course/modules-packages.md
+            - "Chapter 9: Context Managers": training/main-course/context-managers.md
             - "Chapter 10: Decorators": training/main-course/decorators.md
-            - "Chapter 11: Python Standard Library": training/main-course/stdlib-tour.md
-            - "Chapter 12: Python environments & Package installation": training/main-course/venvs-packages-installation.md
+            - "Chapter 11: Modules & Packages": training/main-course/modules-packages.md
+            - "Chapter 12: Python Environments & Package Installation": training/main-course/venvs-packages-installation.md
+            - "Chapter 13: Python Standard Library": training/main-course/stdlib-tour.md
         - Oddjob: training/oddjob.md
         #- Cheatsheet: training/cheatsheet.md
     - Lessons:

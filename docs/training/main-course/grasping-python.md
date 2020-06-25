@@ -564,13 +564,15 @@ object)
 
 ## Python Scoping
 
-A scope defines the visibility of names. The lookup of names in Python the
-LEGB-Rule:
+A scope defines the visibility of names. The lookup of names in Python obeys
+the "LEGB"-Rule:
 
  1. **L**ocal
  1. **E**nclosing
  1. **G**lobal
  1. **B**uiltin
+
+The workings of LEGB by example:
 
 ``` python
 >>> global_x = "I'm global"
@@ -600,6 +602,43 @@ I'm global
 print() is a built-in!
 >>> 
 ```
+
+### Python Classes "Unscoped"
+
+Note that the class body block of a class definition *does not* form an
+enclosing scope for the methods of the class:
+
+``` python
+>> class FunctionsDefineScope:
+...      
+...     # class attributes 
+...     cls_var = 'common'
+...     another_cls_var = 'also ' + cls_var  # name in the same scope is usable
+...     
+...     def show_me(self):
+...         # class body is not an enclosing scope for method body...
+...     
+...         # access class attributes...
+...         # ...through class
+...         print(FunctionsDefineScope.cls_var,
+...               FunctionsDefineScope.another_cls_var)
+...         # ...through instance
+...         print(self.cls_var, self.another_cls_var)
+...         
+...         # this will raise:
+...         print(cls_var, another_cls_var)
+... 
+>>> fds = FunctionsDefineScope()
+>>> fds.show_me()
+common also common
+common also common
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 17, in show_me
+NameError: name 'cls_var' is not defined
+>>> 
+```
+
 
 ## Style guide
 
