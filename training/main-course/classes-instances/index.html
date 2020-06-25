@@ -1,0 +1,1839 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Practical Python training material">
+      
+      
+      
+        <meta name="author" content="Holger Joukl">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.0">
+    
+    
+      
+        <title>Chapter 5: Classes & Instances - Curious Python Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.89dc9fe3.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecd4686e.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#be-classy-python-classes-and-instances" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="Curious Python Course" class="md-header-nav__button md-logo" aria-label="Curious Python Course">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Curious Python Course
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Chapter 5: Classes & Instances
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/hjoukl/cpycourse/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hjoukl/cpycourse
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../tutorial/" class="md-tabs__link md-tabs__link--active">
+          Training
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../lessons/cmdline-calc/" class="md-tabs__link">
+          Lessons
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/python/" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../about/curious-python-course/" class="md-tabs__link">
+          About
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Curious Python Course" class="md-nav__button md-logo" aria-label="Curious Python Course">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    Curious Python Course
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/hjoukl/cpycourse/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hjoukl/cpycourse
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Training
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Training" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Training
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/" title="Tutorial" class="md-nav__link">
+      Tutorial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked>
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Main Course
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Main Course" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Main Course
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../main-course/" title="A Curious Python Main Course" class="md-nav__link">
+      A Curious Python Main Course
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="Chapter 0: Installing Python" class="md-nav__link">
+      Chapter 0: Installing Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../grasping-python/" title="Chapter 1: Grasping Python" class="md-nav__link">
+      Chapter 1: Grasping Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../objects/" title="Chapter 2: Python Objects" class="md-nav__link">
+      Chapter 2: Python Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../builtin-types/" title="Chapter 3: Built-in Types" class="md-nav__link">
+      Chapter 3: Built-in Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../functions/" title="Chapter 4: Functions" class="md-nav__link">
+      Chapter 4: Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Chapter 5: Classes & Instances
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Chapter 5: Classes & Instances" class="md-nav__link md-nav__link--active">
+      Chapter 5: Classes & Instances
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simple-class" class="md-nav__link">
+    Simple class
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note-on-self-parameter" class="md-nav__link">
+    Note on self-parameter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-privacy-private-attributes" class="md-nav__link">
+    Class Privacy - private Attributes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inheritance-is-a-relation" class="md-nav__link">
+    Inheritance ("is-a"-relation)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-inheritance" class="md-nav__link">
+    Multiple Inheritance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#composition-has-a-relation" class="md-nav__link">
+    Composition ("has-a"-relation)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-attributes" class="md-nav__link">
+    Class Attributes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-properties" class="md-nav__link">
+    Class Properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duck-typing" class="md-nav__link">
+    Duck Typing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#special-methods" class="md-nav__link">
+    Special Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Special Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-methods" class="md-nav__link">
+    class methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    Static Methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callable-classes" class="md-nav__link">
+    Callable Classes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-decorators" class="md-nav__link">
+    Class Decorators
+  </a>
+  
+    <nav class="md-nav" aria-label="Class Decorators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-a-class-as-a-decorator" class="md-nav__link">
+    Using a class as a decorator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decorating-a-class" class="md-nav__link">
+    Decorating a class
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-testing" class="md-nav__link">
+    Class Testing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metaclasses" class="md-nav__link">
+    MetaClasses
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-readings-on-classes" class="md-nav__link">
+    Further readings on classes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flow-control/" title="Chapter 6: Flow Control" class="md-nav__link">
+      Chapter 6: Flow Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exceptions/" title="Chapter 7: Exceptions" class="md-nav__link">
+      Chapter 7: Exceptions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../io/" title="Chapter 8: (File) Input & Output" class="md-nav__link">
+      Chapter 8: (File) Input & Output
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../context-managers/" title="Chapter 9: Context Managers" class="md-nav__link">
+      Chapter 9: Context Managers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../decorators/" title="Chapter 10: Decorators" class="md-nav__link">
+      Chapter 10: Decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modules-packages/" title="Chapter 11: Modules & Packages" class="md-nav__link">
+      Chapter 11: Modules & Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../venvs-packages-installation/" title="Chapter 12: Python Environments & Package Installation" class="md-nav__link">
+      Chapter 12: Python Environments & Package Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../stdlib-tour/" title="Chapter 13: Python Standard Library" class="md-nav__link">
+      Chapter 13: Python Standard Library
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../oddjob/" title="Oddjob" class="md-nav__link">
+      Oddjob
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Lessons
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Lessons" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Lessons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/cmdline-calc/" title="Command Line Calculation" class="md-nav__link">
+      Command Line Calculation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/hello-world/" title="Hello World" class="md-nav__link">
+      Hello World
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/list-modify/" title="List Modification" class="md-nav__link">
+      List Modification
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/gen-even-odd/" title="Generate (Un)Even Numbers" class="md-nav__link">
+      Generate (Un)Even Numbers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/rewrite-dict-comp/" title="Rewrite Dict Comprehension" class="md-nav__link">
+      Rewrite Dict Comprehension
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/check-user-input-even/" title="Check User Input Evenness" class="md-nav__link">
+      Check User Input Evenness
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/reverse-words/" title="Reverse Word Order" class="md-nav__link">
+      Reverse Word Order
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/palindroms/" title="Check Palindromes" class="md-nav__link">
+      Check Palindromes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/customer/" title="Customer Class" class="md-nav__link">
+      Customer Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/iter-file/" title="Iterate File" class="md-nav__link">
+      Iterate File
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Python
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/python/" title="Python" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/why-python/" title="Why Python?" class="md-nav__link">
+      Why Python?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/python-history/" title="A brief history of Python" class="md-nav__link">
+      A brief history of Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      About
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="About" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        About
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/curious-python-course/" title="Curious Python Course" class="md-nav__link">
+      Curious Python Course
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/legal/" title="Legal" class="md-nav__link">
+      Legal
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/cpycourse-contributors/" title="Contributors" class="md-nav__link">
+      Contributors
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simple-class" class="md-nav__link">
+    Simple class
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note-on-self-parameter" class="md-nav__link">
+    Note on self-parameter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-privacy-private-attributes" class="md-nav__link">
+    Class Privacy - private Attributes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inheritance-is-a-relation" class="md-nav__link">
+    Inheritance ("is-a"-relation)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-inheritance" class="md-nav__link">
+    Multiple Inheritance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#composition-has-a-relation" class="md-nav__link">
+    Composition ("has-a"-relation)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-attributes" class="md-nav__link">
+    Class Attributes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-properties" class="md-nav__link">
+    Class Properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duck-typing" class="md-nav__link">
+    Duck Typing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#special-methods" class="md-nav__link">
+    Special Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Special Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-methods" class="md-nav__link">
+    class methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    Static Methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callable-classes" class="md-nav__link">
+    Callable Classes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-decorators" class="md-nav__link">
+    Class Decorators
+  </a>
+  
+    <nav class="md-nav" aria-label="Class Decorators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-a-class-as-a-decorator" class="md-nav__link">
+    Using a class as a decorator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decorating-a-class" class="md-nav__link">
+    Decorating a class
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-testing" class="md-nav__link">
+    Class Testing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metaclasses" class="md-nav__link">
+    MetaClasses
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-readings-on-classes" class="md-nav__link">
+    Further readings on classes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/hjoukl/cpycourse/edit/master/docs/training/main-course/classes-instances.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="be-classy-python-classes-and-instances">Be classy: Python Classes and Instances<a class="headerlink" href="#be-classy-python-classes-and-instances" title="Permanent link">#</a></h1>
+<p>Classes are the Python building block creating user-defined types in an object-oriented manner. Classes encapsulate data ('attributes') and appropriate functions ('methods'), which define the bahaviour of class-instances (i.e. objects of that class). Python supports 'composition' ("has-a"-relation) and (multiple-) 'inheritance' ("is-a"-relation) between classes/instances. In combination with 'method-overriding' and a special kind of 'polymorphism' (<strong><em>Duck-Typing</em></strong>), Python offers most of bunch of object-oriented features (Most, because Python doesn't really supports class privacy as explained below).
+Classes itself are objects, as such define a state (e.g. the <code>__name__</code> attribute) and a behaviour (a set of methods) - the most common is the class-costructor, which creates instances of a class.</p>
+<p>Let's start with a simple class.</p>
+<h2 id="simple-class">Simple class<a class="headerlink" href="#simple-class" title="Permanent link">#</a></h2>
+<p>Simple classe typically have instance-attributes and instance-methods.</p>
+<ol>
+<li>instance attributes: <ul>
+<li>each class instance has its own 'local' copy of its instance-atttributes  </li>
+<li>instance-attributes are accessd using the <code>.</code>-dot operator:  Pseudo-syntax <code>&lt;class-instance&gt;.&lt;instance-attribute&gt;</code></li>
+</ul>
+</li>
+<li>instance-methods: <ul>
+<li>must be called with a class-instance</li>
+<li>instance-methods are accessed using the <code>.</code>-dot operator: Pseudo-syntax <code>&lt;class-instance&gt;.&lt;instance-method&gt;(&lt;params&gt;)</code></li>
+<li>the 'class constructor' is named <code>__init__()</code>. The <code>__init__()</code>-method is not mandatory to create class-instances (that's the task of the <a href="https://docs.python.org/3/reference/datamodel.html?highlight=__init#object.__new__"><code>__new__()</code>-method</a>, which is implicitly there. But practically the <code>__init__()</code>-method is always necessary to initialize the instance-attributes. To be more precisely: A class-instatiation is a 2-step process 1. creating the class (<code>__new__()</code>)and 2. initialisation (<code>__init__()</code>). During a class-instantiation these 2-steps are implicitly performed by the interpreter.</li>
+<li>a class can define a destructor-mehod called <code>__del__()</code>, to explicitly do some finalizer tasks e.g. close ressources opened by the class-instance. The destructor is never called explicitly by user-code, instead its is called by the interpreters garbage collector, when the reference count (see <a href="../objects/">Object Lifetime and Object Reference</a>) of the class instance reaches 0. For more details see <a href="https://docs.python.org/3/reference/datamodel.html?highlight=__del#object.__del__"><strong>del</strong>()</a>.</li>
+<li>every instance-method need an explicit <em>1.st</em>-parameter named <code>self</code></li>
+</ul>
+</li>
+</ol>
+<p><strong><em>class definition example (1)</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">:</span><span class="k">pass</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><strong><em>class <code>__name__</code>- attribute</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="s1">&#39;A&#39;</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><strong><em>class definition (2)</em></strong>  </p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>  <span class="c1"># class constructor</span>
+<span class="o">...</span>          <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>      <span class="c1"># instance-attribute</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>         <span class="c1"># instance method</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><strong><em>class instantiation - attribute and method access</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="n">name</span>                <span class="c1"># attribute-access using class-instance and &#39;.&#39;-dot operator</span>
+<span class="s1">&#39;A&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>           <span class="c1"># method-access  using class-instance and &#39;.&#39;-dot operator</span>
+<span class="s1">&#39;A&#39;</span>
+<span class="o">&gt;&gt;&gt;</span>  <span class="n">a</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>  <span class="c1"># class-attribute </span>
+<span class="s1">&#39;A&#39;</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<h2 id="note-on-self-parameter">Note on <code>self</code>-parameter<a class="headerlink" href="#note-on-self-parameter" title="Permanent link">#</a></h2>
+<p>During a instance-method call the python interpreter implicity converts (pseudocode)</p>
+<div class="codehilite"><pre><span></span><code>&lt;class-instance-object&gt;.&lt;instance-method&gt;(&lt;param-1&gt;, ... &lt;param-n&gt;)
+</code></pre></div>
+
+
+<p>into</p>
+<div class="codehilite"><pre><span></span><code>&lt;class-object&gt;.&lt;instance-method&gt;(&lt;class-instance-object&gt;, &lt;param-1&gt;, ..., &lt;param-n&gt;)
+</code></pre></div>
+
+
+<p>The <code>self</code>-argument is the class-instance-object iself. See also the section <a href="https://docs.python.org/3/reference/datamodel.html?highlight=__del#the-standard-type-hierarchy">Instance methods</a> auf the Python docs.</p>
+<p>The <code>self</code>-parameter is therefore similar to the <code>this</code>-pointer of C++ and Java:</p>
+<ol>
+<li>Python <code>self</code>: Explicit 1.st parameter in every instance-method</li>
+<li>C++ <code>this</code>-pointer: Implicit parameter to all member functions. It's a keyword holding a pointer to the current object </li>
+<li>Java <code>this</code>-reference: Implicit parameter of all member functions. It's a keyword holdung a reference to the current object</li>
+</ol>
+<p><strong><em>Note:</em></strong>
+The name <code>self</code> is a convention , and could be changed, but it shouldn't, because it keeps's the code understandable.</p>
+<h2 id="class-privacy-private-attributes">Class Privacy - private Attributes<a class="headerlink" href="#class-privacy-private-attributes" title="Permanent link">#</a></h2>
+<p>Python doesen't provide any kind of 'access-specifiers' like e.g. C++ (<code>public</code>, <code>private</code>, <code>protected</code>) to control access to
+attributes or methods. I.e. attributes and methods are 'public' accessible.</p>
+<p>Python provides 2 weak forms of data-hiding (but no real protection by access-control)</p>
+<ol>
+<li>'private-by-convention': Attributes prefixed with a single underscore <code>_</code> should be regarded as a private attribute</li>
+<li>'private-by-lexical-substitition': Attributes prefixed with double underscores <code>__</code> like e.g. <code>__foo</code> will be implicitly renamed to <code>_classname__foo</code> by the interpreter. This textual substitution is called 'name-mangling'.</li>
+</ol>
+<p>As can be seen the following example this 'protections' can be bypassed:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>        <span class="c1"># attribute &#39;private-by-convention&#39;</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">__name</span> <span class="o">=</span> <span class="n">name</span>       <span class="c1"># attribute &#39;private-by-lexical-substitution&#39;</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">_getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">__getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__name</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><strong><em>usage</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="s2">&quot;ClassPrivacy&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;_A__getName&#39;</span><span class="p">,</span> <span class="s1">&#39;_A__name&#39;</span><span class="p">,</span> <span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dict__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;__format__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__module__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span> <span class="s1">&#39;__weakref__&#39;</span><span class="p">,</span> <span class="s1">&#39;_getName&#39;</span><span class="p">,</span> <span class="s1">&#39;_name&#39;</span><span class="p">,</span> <span class="s1">&#39;getName&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">name</span>             <span class="c1"># (1) public attribute</span>
+<span class="s1">&#39;ClassPrivacy&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">_name</span>            <span class="c1"># (2) private-by-convention ==&gt; still accessible</span>
+<span class="s1">&#39;ClassPrivacy&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">__name</span>           <span class="c1"># (3) private-by-lecical-convention ==&gt; not accessible because it is not found</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">AttributeError</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s1">&#39;__name&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>        <span class="c1"># (4) public method                       </span>
+<span class="s1">&#39;ClassPrivacy&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">_getName</span><span class="p">()</span>       <span class="c1"># (5) private-by-convention ==&gt; still accessible/callable</span>
+<span class="s1">&#39;ClassPrivacy&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">__getName</span><span class="p">()</span>      <span class="c1"># (6) private-by-lexical-convention ==&gt; not accessible because it is not found</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">AttributeError</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s1">&#39;__getName&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">_A__name</span>         <span class="c1"># (7) bypass protection because you know the rule</span>
+<span class="s1">&#39;ClassPrivacy&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">_A__getName</span><span class="p">()</span>    <span class="c1"># (8) bypass protection because you know the rule</span>
+<span class="s1">&#39;ClassPrivacy&#39;</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p>For more details please refer to <a href="https://docs.python.org/3/tutorial/classes.html#private-variables">Private Variables</a></p>
+<h2 id="inheritance-is-a-relation">Inheritance ("is-a"-relation)<a class="headerlink" href="#inheritance-is-a-relation" title="Permanent link">#</a></h2>
+<p><strong><em>Note on class privacy:</em></strong>
+As mentioned above, Python doesn't provide any real mechanism for class privacy, neither 'data-protection' nor 'data-hiding'. This also applies to class-inheritance. Inheritance is public by default, as a consequence all of the base-class attributes and methods are inherited by the derived-class</p>
+<p><strong><em>class definition</em></strong>  </p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>                            <span class="c1"># class &#39;B&#39; inherhits from class &#39;A&#39;</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>  <span class="c1"># class constructor</span>
+<span class="o">...</span>         <span class="n">A</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>         <span class="c1"># call base-class initialisation-method</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>           <span class="c1"># instance variable</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">getNumber</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>               <span class="c1"># instance methode</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<p><strong><em>class instantiation</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">(</span><span class="s1">&#39;Inheritance&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">name</span>                                <span class="c1"># attribute-access</span>
+<span class="s1">&#39;Inheritance&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>                           <span class="c1"># method-access</span>
+<span class="s1">&#39;Inheritance&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">number</span>                              <span class="c1"># attribute-access</span>
+<span class="mi">100</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">getNumber</span><span class="p">()</span>                         <span class="c1"># attribute-access     </span>
+<span class="mi">100</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<h2 id="multiple-inheritance">Multiple Inheritance<a class="headerlink" href="#multiple-inheritance" title="Permanent link">#</a></h2>
+<p>Python also supports multiple inheritance</p>
+<p><strong><em>class definition</em></strong> </p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">Z</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">another_name</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">another_name</span> <span class="o">=</span> <span class="n">another_name</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">getAnotherName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">another_name</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">Z</span><span class="p">):</span>   <span class="c1"># multiple inheritance </span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">another_name</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+<span class="o">...</span>         <span class="n">A</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>           <span class="c1"># call base-class initialisation-method of class &#39;A&#39;</span>
+<span class="o">...</span>         <span class="n">Z</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">another_name</span><span class="p">)</span>   <span class="c1"># call base-class initialisation-method of class &#39;Z&#39;</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">getNumber</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><strong><em>class instantiation</em></strong> </p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">(</span><span class="s1">&#39;BaseClass_A&#39;</span><span class="p">,</span> <span class="s1">&#39;BaseClass_Z&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">getNumber</span><span class="p">()</span>
+<span class="mi">100</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>
+<span class="s1">&#39;BaseClass_A&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">getAnotherName</span><span class="p">()</span>
+<span class="s1">&#39;BaseClass_Z&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dict__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;__format__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__module__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span> <span class="s1">&#39;__weakref__&#39;</span><span class="p">,</span> <span class="s1">&#39;another_name&#39;</span><span class="p">,</span> <span class="s1">&#39;getAnotherName&#39;</span><span class="p">,</span> <span class="s1">&#39;getName&#39;</span><span class="p">,</span> <span class="s1">&#39;getNumber&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><strong><em>Note:</em></strong>
+The <code>dir(&lt;object&gt;</code>)- builtin function lists all names in the namespace of the given object. As can be seen above all defined names of all base-class are in the namespace of the derived class.</p>
+<h2 id="composition-has-a-relation">Composition ("has-a"-relation)<a class="headerlink" href="#composition-has-a-relation" title="Permanent link">#</a></h2>
+<p>Python also support composition, i.e. a class 'B' has an instance-attribute pointing to an instance-attribute of class 'A'</p>
+<p><strong><em>class definitions</em></strong>  </p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">B</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>               <span class="c1"># create a class &#39;A&#39; (calling the constructor of class &#39;A&#39;) instance and old a reference to it (class &#39;B&#39; &quot;has-a&quot; an instance-attribute of class &#39;A&#39;</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">getNumber</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><strong><em>class instantiation</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">(</span><span class="s1">&#39;Composition&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>     <span class="c1"># (1): indirect access to instance-variable &#39;a&#39;</span>
+<span class="s1">&#39;Composition&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>   <span class="c1"># (2): direct access to instance-variable &#39;a&#39;</span>
+<span class="s1">&#39;Composition&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">name</span>        <span class="c1"># (3): direct access to instance-variable &#39;a&#39;</span>
+<span class="s1">&#39;Composition&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">getNumber</span><span class="p">()</span>
+<span class="mi">100</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<h2 id="class-attributes">Class Attributes<a class="headerlink" href="#class-attributes" title="Permanent link">#</a></h2>
+<p>As opposed to 'instance'-attributes 'class'-attributes are common to all class instances.</p>
+<p><strong><em>class definition</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<span class="o">...</span>         <span class="n">A</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<p><strong><em>class instantiation</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="s1">&#39;A1&#39;</span><span class="p">)</span>    <span class="c1"># 1.st instance increments class-attribute</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="n">count</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="s1">&#39;A2&#39;</span><span class="p">)</span>    <span class="c1"># 2.nd instance increments class-attribute</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a2</span><span class="o">.</span><span class="n">count</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="n">count</span>        <span class="c1"># Note: both instances share the same attribute</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+<span class="mi">140201179340160</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">a2</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+<span class="mi">140201179340160</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<h2 id="class-properties">Class Properties<a class="headerlink" href="#class-properties" title="Permanent link">#</a></h2>
+<p>Ordinary Python instance-attributes are by default 'readable', 'writable' and 'deletable'. Python class properties ('property-attributes') are attributes with 'access-control', i.e. they can be designed to be 'readable', 'writeable' and 'deletable'. Python properties therefore are managed attributes. This is done with special <code>getter</code>-, <code>setter</code>- and <code>deleter</code>- methods which enables the properties to be accessed as ordinary atttributes (instead of a method-call).</p>
+<p><strong><em>Usecase:</em></strong>
+Properties are a way of data encapusulation. Hiding ordinary attributes behind a 'property-interface/facade' introduces a level of indirection to the origin attribute. The origin attribute may change behind the scenes in keeping the user interface with the property-facade. The property can be seen as the user-interface, while the origin attribute is an implementation detail which is a subject to change. </p>
+<p>Python support two different ways of implementing properties:</p>
+<ol>
+<li>'lower-level' using <code>property()</code> builtin function</li>
+<li>'higher-level' using  <code>@propery</code>-decorator</li>
+</ol>
+<p>The Python docs provide a good <a href="https://docs.python.org/3/library/functions.html#property">property-example</a>, with read-, write- and delete-access. For convenience this is simply copied here. </p>
+<p><strong><em>example using <code>property()</code>-builtin function</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">getx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="k">def</span> <span class="nf">setx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">delx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getx</span><span class="p">,</span> <span class="n">setx</span><span class="p">,</span> <span class="n">delx</span><span class="p">,</span> <span class="s2">&quot;I&#39;m the &#39;x&#39; property.&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>usage</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>       <span class="c1"># (1) set property value</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span>           <span class="c1"># (2) get property value</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span>       <span class="c1"># (3) delete property</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">11</span>      <span class="c1"># (4) re-create property</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span>
+<span class="mi">11</span>
+</code></pre></div>
+
+<p><strong><em>example using the <code>@propery</code>-builtin decorator</em></strong>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;I&#39;m the &#39;x&#39; property.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="nd">@x</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@x</span><span class="o">.</span><span class="n">deleter</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+</code></pre></div></p>
+<p>usage</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">9</span>       <span class="c1"># (1) set property value</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span>           <span class="c1"># (2) get property value</span>
+<span class="mi">9</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span>       <span class="c1"># (3) delete property</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">99</span>      <span class="c1"># (4) re-create property</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span>
+<span class="mi">99</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><em>*</em>'readonly property example <em>*</em></p>
+<p>The above example stripped-down to be read-only:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span>
+<span class="o">...</span>     <span class="nd">@property</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p>usage</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span>                                   <span class="c1"># (1) read access</span>
+<span class="s1">&#39;foo&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span>                           <span class="c1"># (2) write access</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">AttributeError</span><span class="p">:</span> <span class="n">can</span><span class="s1">&#39;t set attribute</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span>                              <span class="c1"># (3) delete access</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">AttributeError</span><span class="p">:</span> <span class="n">can</span><span class="s1">&#39;t delete attribute</span>
+<span class="o">&gt;&gt;&gt;</span>  
+</code></pre></div>
+
+<p><strong><em>Note:</em></strong>
+Property 'x' is read-only, write- and delete-access fail.</p>
+<h2 id="duck-typing">Duck Typing<a class="headerlink" href="#duck-typing" title="Permanent link">#</a></h2>
+<p>Statically typed languages like C++ use virtual function for runtime polymorphism. Derived classes therefore override base-class functions retaining their signature. When base-class objects, which hold a derived class reference, call their base-class function, the runtime will virtual dispatch the derived-class function.
+This allows programing on a abstract base-class level. But this is restricted to class-objects having an inheritance relationship.</p>
+<p>Pythons polymorphism is based on 'duck typing', where the polymorphism is not based on common types, instead it is based on common behaviour (methods) and attributes of the objects itself. See Wikipedia article on <a href="https://en.wikipedia.org/wiki/Duck_typing">Duck typing</a>: "If it walks like a duck and it quacks like a duck, then it must be a duck" </p>
+<p>This enable more architecural freedom on the program/class-design, because class-hierarchies can be breaked down and allow more loosely coupled program-design, as David M. Beazley writes in his Book "Python Essential Reference (Fourth Edition)".</p>
+<h2 id="special-methods">Special Methods<a class="headerlink" href="#special-methods" title="Permanent link">#</a></h2>
+<h3 id="class-methods">class methods<a class="headerlink" href="#class-methods" title="Permanent link">#</a></h3>
+<p>As opposed to instance-methods, class-methods operate on the class-object.</p>
+<p><strong><em>Usecase:</em></strong> 
+Python doesn't support method overloading like C++ or Java. Therefore multiple methods with the same name within a single class is not supported. As a consequence only a single class constructor (<code>__init__()</code>-method) can be defined. With 'class-method's it's possible to overcome this.</p>
+<p>Python 'classc-methods' are defined using the <code>@sclassmethod</code>-decorator preceeding to the method-definition</p>
+<p><em><code>@classmethod</code>-example</em></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">ByteStringStore</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bytestring</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">bytestring</span> <span class="o">=</span> <span class="n">bytestring</span>
+<span class="o">...</span>     <span class="nd">@classmethod</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">from_unicode</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">unicodestring</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">unicodestring</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+<span class="o">...</span> 
+<span class="o">...</span> <span class="p">)</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">ByteStringStore</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">=</span> <span class="n">ByteStringStore</span><span class="o">.</span><span class="n">from_unicode</span><span class="p">(</span><span class="s1">&#39;äöü&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">ByteStringStore</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">ByteStringStore</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<h3 id="static-methods">Static Methods<a class="headerlink" href="#static-methods" title="Permanent link">#</a></h3>
+<p>Python static-methods neither work on class-instance-objects nor on class-objects (that's the task of 'instance-method' and 'class-methods'). Python 'static-methods' can best be compared to module-functions, defined in the namespace of a class, instead of a modules-namespace.</p>
+<p><strong><em>Usecase:</em></strong> Python 'static-methods' can be used for (utility-)functions that logical link to a class, but do not work on the class or their instaances itself</p>
+<p>Python 'static-methods' are defined using the <code>@staticmethod</code>-decorator preceeding to the method-definition</p>
+<p><em><code>@staticmethod</code>-example</em></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<span class="o">...</span>     <span class="nd">@staticmethod</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">mystaticmethod</span><span class="p">():</span>
+<span class="o">...</span>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;this is a staticmethod&#39;</span><span class="p">)</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span><span class="o">.</span><span class="n">mystaticmethod</span><span class="p">()</span>
+<span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="nb">staticmethod</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p>Python <code>@staticmethods</code> are the correspondents to C++ and Java staticmethods, see the Python docs for <a href="https://docs.python.org/3/library/functions.html#classmethod"><code>classmethod</code></a></p>
+<h2 id="callable-classes">Callable Classes<a class="headerlink" href="#callable-classes" title="Permanent link">#</a></h2>
+<p>Callable classes are classes where the class-instances can simply be called as a function. Giving the class a callable-interface, their instances are callable. A class is made callable by defining a the special instance-method named <code>__call__()</code>).</p>
+<p><strong><em>Usecase:</em></strong>
+ If different classes provide different instance-method names for the same functionality (e.g. <code>A.getName()</code> and <code>B.getMyName()</code>), the usage for the programmers is cumbersome. If they want to get the name from the objects on the one hand they have to call <code>a.getName()</code>and on the other hand <code>b.getMyName()</code>. Making the classes callable, gives them a uniform interface, the name for both class-instance can be fetched in the same manner, simply using the object-name following parenthesis: <code>a()</code> and <code>b()</code>.</p>
+<p><strong><em>Definition of a callable class</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">CallableClass</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="o">...</span>         <span class="n">CallableClass</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&gt;&gt;&gt; calling normal instance-method: </span><span class="si">%s</span><span class="s1">() &lt;&lt;&lt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="n">CallableClass</span><span class="o">.</span><span class="n">name</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&gt;&gt;&gt; calling special instance-method: </span><span class="si">%s</span><span class="s1">() &lt;&lt;&lt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__call__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="n">CallableClass</span><span class="o">.</span><span class="n">name</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><strong><em>Usage of a callable instance</em></strong> </p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">CallableClass</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>                        <span class="c1"># (1) Create an instance of the callable class</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">foo</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span>                <span class="c1"># (2) use the &#39;standard&#39;-class-interface instance-method &#39;getName()&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">calling</span> <span class="n">normal</span> <span class="n">instance</span><span class="o">-</span><span class="n">method</span><span class="p">:</span> <span class="n">getName</span><span class="p">()</span> <span class="o">&lt;&lt;&lt;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">foo</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">foo</span><span class="p">())</span>                        <span class="c1"># (3) use the &#39;callable&#39;-class-interface instance-method &#39;__call__()&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">calling</span> <span class="n">special</span> <span class="n">instance</span><span class="o">-</span><span class="n">method</span><span class="p">:</span> <span class="fm">__call__</span><span class="p">()</span> <span class="o">&lt;&lt;&lt;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">foo</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<p>Let's give it a try</p>
+<div class="admonition question">
+<p class="admonition-title">Lesson: Customers Class</p>
+<p>Create a class-hierarchy:</p>
+<ul>
+<li><strong><em>Class Customer</em></strong><ul>
+<li>class-attribute: number<em>of</em>customers (which should increment with every new class-instance)</li>
+<li>class constructor with parameter: 'email', 'employees'</li>
+<li>instance-attribute: 'id' (number of the current value of 'number<em>of</em>customers')</li>
+<li>instance-attribute: 'email'</li>
+<li>instance-attribute: 'employees'  (number of employees))</li>
+<li>instance-method: 'getEmployees' (returning 'employees')</li>
+</ul>
+</li>
+<li><strong><em>Class Retail(Customer)</em></strong><ul>
+<li>private class attribute: '__type' initialized to 'Retail'</li>
+<li>class constructor with parameters: 'name', 'email', 'employees'</li>
+<li>private instance-attribute: '__retailname' (initialized with 'name'-parameter)</li>
+<li>instance-method: 'getRetailName' (returning private instance-attribute '__retailname')</li>
+<li>instance-method: 'getType' (returning private class<em>attribute '</em>_type')</li>
+</ul>
+</li>
+<li><strong><em>Class Wholesale(Customer)</em></strong><ul>
+<li>private class attribute: '__type' initialized to  'Wholesale'</li>
+<li>class constructor with parameters: 'name', 'email', 'employees'</li>
+<li>private instance-attribute: '__wholesalename' (initialized with 'name'-parameter)</li>
+<li>instance-method: 'geWholesaleName' (returning private instance-attribute '__wholesalename')</li>
+<li>instance-method: 'getType' (returning private class<em>attribute '</em>_type')</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>1.) Create a list of Customers of different types ('Retail'-customers and 'Wholesale'-customers)</p>
+<p>2.) Iterate the list and output 'name', 'type', 'id' and 'employees' of each customer</p>
+<p>Hint: provide a callable interface <code>__call__()</code></p>
+<h2 id="class-decorators">Class Decorators<a class="headerlink" href="#class-decorators" title="Permanent link">#</a></h2>
+<p>Decorators are explained in detail <a href="../decorators/">here</a>. Here we just give a brief overview concerning decorating in the context of classes.</p>
+<p><strong><em>Usecase</em></strong>
+Generally speaking a decorator is a 'wrappers' around functions or classes with the purpose of adding some functionality.
+Wrappers are callable object, see <a href="#callable-classes">callable-class</a>.</p>
+<p>So there are two parties in the decorating process:</p>
+<ol>
+<li>the decorator</li>
+<li>the object to be decorated</li>
+</ol>
+<h3 id="using-a-class-as-a-decorator">Using a class as a decorator<a class="headerlink" href="#using-a-class-as-a-decorator" title="Permanent link">#</a></h3>
+<p>In the following example we define a <strong><em>class</em></strong> as a decorator and define a <strong><em>function</em></strong> which is decorated with this 'class-decorator'.</p>
+<p><strong><em>Class Decorator definition and function decoration</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">MyDecorator</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="o">...</span>         <span class="c1"># put the additional functionalty here around the function</span>
+<span class="o">...</span>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;==&gt; START calling </span><span class="si">%s</span><span class="s1">()&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>  <span class="c1"># some output before the wrapped function is called</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>                                      <span class="c1"># call the wrapped-function</span>
+<span class="o">...</span>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&lt;== END calling </span><span class="si">%s</span><span class="s1">()&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>    <span class="c1"># some output after the wrapped function is called</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="nd">@MyDecorator</span>
+<span class="o">...</span> <span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&gt;&gt;&gt; INSIDE decorated function: </span><span class="si">%s</span><span class="s1">&lt;&lt;&lt;&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><strong><em>function call</em></strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">myfunc</span><span class="p">(</span><span class="s1">&#39;decorator-example&#39;</span><span class="p">)</span>
+<span class="o">==&gt;</span> <span class="n">START</span> <span class="n">calling</span> <span class="n">myfunc</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">INSIDE</span> <span class="n">decorated</span> <span class="n">function</span><span class="p">:</span> <span class="n">decorator</span><span class="o">-</span><span class="n">example</span><span class="o">&lt;&lt;&lt;</span>
+<span class="o">&lt;==</span> <span class="n">END</span> <span class="n">calling</span> <span class="n">myfunc</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<p><strong><em>Note:</em></strong>
+Here the class-decorator was used to provide some additional output, when the 'decorated' function is called.</p>
+<h3 id="decorating-a-class">Decorating a class<a class="headerlink" href="#decorating-a-class" title="Permanent link">#</a></h3>
+<p>In the following example we define a <strong><em>function</em></strong> as a decorator and define a <strong><em>class</em></strong> which is decorated with this 'function-decorator'.</p>
+<p><strong><em>Note:</em></strong>
+Here the decorator works on class-definition level, providing some additional funtionality around the class-definition. For sure a rather infrequent usecase which can be classified in some sense as meta-programming.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">mydecoratorfunc</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&gt;&gt;&gt; A new class was born: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">cls</span><span class="p">)</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="bp">cls</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="nd">@mydecoratorfunc</span>
+<span class="o">...</span> <span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="k">pass</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="n">new</span> <span class="k">class</span> <span class="nc">was</span> <span class="n">born</span><span class="p">:</span> <span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">A</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<h2 id="class-testing">Class Testing<a class="headerlink" href="#class-testing" title="Permanent link">#</a></h2>
+<p>Python provides 2 builtin-function to identify/test the membership on class-instance-types.</p>
+<ol>
+<li><code>types()</code>: Identifies the concrete class of the class-instance</li>
+<li><code>isinstance()</code>: Testing the belonging to a certain type (along the class-hierarchy!)</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">():</span> <span class="k">pass</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="k">pass</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">C</span><span class="p">():</span> <span class="k">pass</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">A</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="sa">B</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">C</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>          <span class="c1"># check along the inheritance-hierarchy</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="kc">False</span>
+</code></pre></div>
+
+<h2 id="metaclasses">MetaClasses<a class="headerlink" href="#metaclasses" title="Permanent link">#</a></h2>
+<p>It should be mentioned that Python also supports techniques for meta-programming, for example to create metaclasses. But this is subject to advanced courses.</p>
+<h2 id="further-readings-on-classes">Further readings on classes<a class="headerlink" href="#further-readings-on-classes" title="Permanent link">#</a></h2>
+<p>Please refer to the Python docs about <a href="https://docs.python.org/3/tutorial/classes.html">Classes</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../functions/" title="Chapter 4: Functions" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Chapter 4: Functions
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../flow-control/" title="Chapter 6: Flow Control" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Chapter 6: Flow Control
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2020 the <a href="/about/cpycourse-contributors.md">cpycourse contributors</a>.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.36cbf620.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

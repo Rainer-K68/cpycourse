@@ -1,0 +1,1841 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Practical Python training material">
+      
+      
+      
+        <meta name="author" content="Holger Joukl">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.0">
+    
+    
+      
+        <title>Chapter 3: Built-in Types - Curious Python Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.89dc9fe3.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecd4686e.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a-practical-overview-of-python-built-in-types" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="Curious Python Course" class="md-header-nav__button md-logo" aria-label="Curious Python Course">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Curious Python Course
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Chapter 3: Built-in Types
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/hjoukl/cpycourse/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hjoukl/cpycourse
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../tutorial/" class="md-tabs__link md-tabs__link--active">
+          Training
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../lessons/cmdline-calc/" class="md-tabs__link">
+          Lessons
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/python/" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../about/curious-python-course/" class="md-tabs__link">
+          About
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Curious Python Course" class="md-nav__button md-logo" aria-label="Curious Python Course">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    Curious Python Course
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/hjoukl/cpycourse/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hjoukl/cpycourse
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Training
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Training" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Training
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/" title="Tutorial" class="md-nav__link">
+      Tutorial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked>
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Main Course
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Main Course" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Main Course
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../main-course/" title="A Curious Python Main Course" class="md-nav__link">
+      A Curious Python Main Course
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="Chapter 0: Installing Python" class="md-nav__link">
+      Chapter 0: Installing Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../grasping-python/" title="Chapter 1: Grasping Python" class="md-nav__link">
+      Chapter 1: Grasping Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../objects/" title="Chapter 2: Python Objects" class="md-nav__link">
+      Chapter 2: Python Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Chapter 3: Built-in Types
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Chapter 3: Built-in Types" class="md-nav__link md-nav__link--active">
+      Chapter 3: Built-in Types
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#numeric-datatypes" class="md-nav__link">
+    Numeric datatypes
+  </a>
+  
+    <nav class="md-nav" aria-label="Numeric datatypes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integers-int" class="md-nav__link">
+    Integers - int
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floating-point-values-float" class="md-nav__link">
+    Floating Point Values - float
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequences" class="md-nav__link">
+    Sequences
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-sequence-operations" class="md-nav__link">
+    Common Sequence Operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#immutable-sequences" class="md-nav__link">
+    Immutable Sequences
+  </a>
+  
+    <nav class="md-nav" aria-label="Immutable Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strings-str" class="md-nav__link">
+    Strings - str
+  </a>
+  
+    <nav class="md-nav" aria-label="Strings - str">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-methods" class="md-nav__link">
+    String Methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuples-tuple" class="md-nav__link">
+    Tuples - tuple
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mutable-sequences" class="md-nav__link">
+    Mutable Sequences
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutable Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lists-list" class="md-nav__link">
+    Lists - list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-operations" class="md-nav__link">
+    Additional Operations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionaries-dict" class="md-nav__link">
+    Dictionaries - dict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sets-set" class="md-nav__link">
+    Sets - set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#none-none" class="md-nav__link">
+    None - None
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-bool" class="md-nav__link">
+    Boolean bool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../functions/" title="Chapter 4: Functions" class="md-nav__link">
+      Chapter 4: Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../classes-instances/" title="Chapter 5: Classes & Instances" class="md-nav__link">
+      Chapter 5: Classes & Instances
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flow-control/" title="Chapter 6: Flow Control" class="md-nav__link">
+      Chapter 6: Flow Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exceptions/" title="Chapter 7: Exceptions" class="md-nav__link">
+      Chapter 7: Exceptions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../io/" title="Chapter 8: (File) Input & Output" class="md-nav__link">
+      Chapter 8: (File) Input & Output
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../context-managers/" title="Chapter 9: Context Managers" class="md-nav__link">
+      Chapter 9: Context Managers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../decorators/" title="Chapter 10: Decorators" class="md-nav__link">
+      Chapter 10: Decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modules-packages/" title="Chapter 11: Modules & Packages" class="md-nav__link">
+      Chapter 11: Modules & Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../venvs-packages-installation/" title="Chapter 12: Python Environments & Package Installation" class="md-nav__link">
+      Chapter 12: Python Environments & Package Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../stdlib-tour/" title="Chapter 13: Python Standard Library" class="md-nav__link">
+      Chapter 13: Python Standard Library
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../oddjob/" title="Oddjob" class="md-nav__link">
+      Oddjob
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Lessons
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Lessons" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Lessons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/cmdline-calc/" title="Command Line Calculation" class="md-nav__link">
+      Command Line Calculation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/hello-world/" title="Hello World" class="md-nav__link">
+      Hello World
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/list-modify/" title="List Modification" class="md-nav__link">
+      List Modification
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/gen-even-odd/" title="Generate (Un)Even Numbers" class="md-nav__link">
+      Generate (Un)Even Numbers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/rewrite-dict-comp/" title="Rewrite Dict Comprehension" class="md-nav__link">
+      Rewrite Dict Comprehension
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/check-user-input-even/" title="Check User Input Evenness" class="md-nav__link">
+      Check User Input Evenness
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/reverse-words/" title="Reverse Word Order" class="md-nav__link">
+      Reverse Word Order
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/palindroms/" title="Check Palindromes" class="md-nav__link">
+      Check Palindromes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/customer/" title="Customer Class" class="md-nav__link">
+      Customer Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../lessons/iter-file/" title="Iterate File" class="md-nav__link">
+      Iterate File
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Python
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/python/" title="Python" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/why-python/" title="Why Python?" class="md-nav__link">
+      Why Python?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/python-history/" title="A brief history of Python" class="md-nav__link">
+      A brief history of Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      About
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="About" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        About
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/curious-python-course/" title="Curious Python Course" class="md-nav__link">
+      Curious Python Course
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/legal/" title="Legal" class="md-nav__link">
+      Legal
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/cpycourse-contributors/" title="Contributors" class="md-nav__link">
+      Contributors
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#numeric-datatypes" class="md-nav__link">
+    Numeric datatypes
+  </a>
+  
+    <nav class="md-nav" aria-label="Numeric datatypes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integers-int" class="md-nav__link">
+    Integers - int
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floating-point-values-float" class="md-nav__link">
+    Floating Point Values - float
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequences" class="md-nav__link">
+    Sequences
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-sequence-operations" class="md-nav__link">
+    Common Sequence Operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#immutable-sequences" class="md-nav__link">
+    Immutable Sequences
+  </a>
+  
+    <nav class="md-nav" aria-label="Immutable Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strings-str" class="md-nav__link">
+    Strings - str
+  </a>
+  
+    <nav class="md-nav" aria-label="Strings - str">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-methods" class="md-nav__link">
+    String Methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuples-tuple" class="md-nav__link">
+    Tuples - tuple
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mutable-sequences" class="md-nav__link">
+    Mutable Sequences
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutable Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lists-list" class="md-nav__link">
+    Lists - list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-operations" class="md-nav__link">
+    Additional Operations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionaries-dict" class="md-nav__link">
+    Dictionaries - dict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sets-set" class="md-nav__link">
+    Sets - set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#none-none" class="md-nav__link">
+    None - None
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-bool" class="md-nav__link">
+    Boolean bool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/hjoukl/cpycourse/edit/master/docs/training/main-course/builtin-types.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="a-practical-overview-of-python-built-in-types">A practical Overview of Python Built-in Types<a class="headerlink" href="#a-practical-overview-of-python-built-in-types" title="Permanent link">#</a></h1>
+<p>This chapter describes important properties of Python's built-in types.</p>
+<p>Python provides a bunch of popular data types. <strong>Simple types</strong> (also called
+primitive data types) as well as <strong>compound types</strong>, which are collections or
+containers of data of equal or different type.</p>
+<p>Each of the Python data types provide a data type-specific set of <em>methods</em>
+and <em>operators</em> that determine the data type's behaviour. This ensemble of <strong>data</strong> and <strong>behaviour</strong> defines the properties of all Python objects.
+For the complete list please refer to <a href="https://docs.python.org/3/library/stdtypes.html">https://docs.python.org/3/library/stdtypes.html</a>.</p>
+<p>Python builtin data types are Python classes themselves. Instances of nearly all Python builtin data-types can be created in two different ways:</p>
+<ul>
+<li>using a type-specific notation: literals in the case of <strong>simple data types</strong> or different kind of brackets <code>(</code>,  <code>)</code>, <code>[</code>, <code>]</code>, <code>{</code>, <code>}</code> in the case of <strong>compound data-types</strong> </li>
+<li>using the data type's class constructor</li>
+</ul>
+<p>The type of a data-literal (or a variable referencing a data type holding that data-literal value) can be identified using the builtin <code>type()</code>-function. </p>
+<p>A type-test of a Python variable is done using buitlins <code>isinstance()</code> function</p>
+<h2 id="numeric-datatypes">Numeric datatypes<a class="headerlink" href="#numeric-datatypes" title="Permanent link">#</a></h2>
+<h3 id="integers-int">Integers - <code>int</code><a class="headerlink" href="#integers-int" title="Permanent link">#</a></h3>
+<p>Example usage:
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="p">()</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># type of int</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">int</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>  <span class="c1"># built-in &#39;+&#39;-operator for int</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># result type</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">int</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div></p>
+<h3 id="floating-point-values-float">Floating Point Values - <code>float</code><a class="headerlink" href="#floating-point-values-float" title="Permanent link">#</a></h3>
+<p>Example usage:
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="mf">1.2</span>
+<span class="mf">1.2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">float</span><span class="p">()</span>
+<span class="mf">0.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># type of float-literal</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">float</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mf">1.2</span> <span class="o">+</span> <span class="mf">3.7</span>  <span class="c1"># built-in &#39;+&#39;-operator</span>
+<span class="mf">4.9</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="mf">1.2</span> <span class="o">+</span> <span class="mf">3.7</span><span class="p">)</span>  <span class="c1"># result type</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">float</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div></p>
+<h2 id="sequences">Sequences<a class="headerlink" href="#sequences" title="Permanent link">#</a></h2>
+<p>Sequences are indexed, ordered "list data sets" of objects:</p>
+<ul>
+<li>strings are <em>immutable</em> sequences of characters</li>
+<li>tuples are <em>immutable</em> sequences of arbitrary objects</li>
+<li>lists are <em>mutable</em> sequences of arbitrary objects</li>
+</ul>
+<h3 id="common-sequence-operations">Common Sequence Operations<a class="headerlink" href="#common-sequence-operations" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Length of sequence s denoted as N</span>
+<span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>                  <span class="c1"># item at sequence s index i</span>
+<span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">]</span>                <span class="c1"># slice of s from i to j: s[i], ..., s[N-1] (a shallow copy)</span>
+<span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>              <span class="c1"># slice of s from i to j with step k: s[i], s[i+k], ...</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>                <span class="c1"># length of s: N</span>
+<span class="nb">min</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>                <span class="c1"># smallest item in s</span>
+<span class="nb">max</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>                <span class="c1"># biggest item in s</span>
+<span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">[,</span> <span class="n">i</span><span class="p">[,</span> <span class="n">j</span><span class="p">]])</span>  <span class="c1"># index of item x (between i and j, if given)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>            <span class="c1"># number of occurences of x in s</span>
+<span class="n">x</span> <span class="ow">in</span> <span class="n">s</span>                <span class="c1"># True if an item in s equals x</span>
+<span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span>            <span class="c1"># False if an item in s equals x</span>
+<span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span>               <span class="c1"># concatenation of s1 and s2</span>
+<span class="n">s</span> <span class="o">*</span> <span class="n">n</span>                 <span class="c1"># n-times concatenation of s</span>
+<span class="n">n</span> <span class="o">*</span> <span class="n">s</span>                 <span class="c1"># - &quot; -</span>
+</code></pre></div>
+
+<h3 id="immutable-sequences">Immutable Sequences<a class="headerlink" href="#immutable-sequences" title="Permanent link">#</a></h3>
+<h4 id="strings-str">Strings - <code>str</code><a class="headerlink" href="#strings-str" title="Permanent link">#</a></h4>
+<p>Strings are <em>character</em> sequences (of unicode characters):</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;text data is ubiquituous&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">str</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="s1">&#39;t&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span class="s1">&#39;text data &#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="s1">&#39;tx aa&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="mi">24</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="s1">&#39; &#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">max</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="s1">&#39;x&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="mi">6</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># use of substrings is supported</span>
+<span class="mi">5</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;is&#39;</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;data&#39;</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;data&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="kc">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span>
+<span class="s1">&#39;foobar&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="s1">&#39;text data is ubiquituoustext data is ubiquituous&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">s</span>
+<span class="s1">&#39;text data is ubiquituoustext data is ubiquituous&#39;</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<h5 id="string-methods">String Methods<a class="headerlink" href="#string-methods" title="Permanent link">#</a></h5>
+<p><code>str</code> objects have plenty of additional functionality:</p>
+<div class="highlight"><pre><span></span><code>----------------------------------------------------------------------
+# string s 
+s.capitalize() -&gt; str
+# capitalized (1st character uppercase, rest lowercase) copy of s
+
+----------------------------------------------------------------------
+s.casefold() -&gt; str
+# &quot;casefolded&quot; copy of s (lowercase with replacement of &quot;caseless&quot; characters,
+# e.g. &quot;ß&quot; --&gt; &quot;ss&quot;
+
+----------------------------------------------------------------------
+s.center(width[, fillchar]) -&gt; str
+# s centered in width-length string, padded with fillchar (default blank)
+
+----------------------------------------------------------------------
+s.encode(encoding=&#39;utf-8&#39;, errors=&#39;strict&#39;) -&gt; bytes
+# return s encoded to bytes object with encoding.
+
+----------------------------------------------------------------------
+s.endswith(suffix[, start[, end]]) -&gt; bool
+# True if s ends with suffix, False otherwise. 
+
+----------------------------------------------------------------------
+s.expandtabs(tabsize=8) -&gt; str
+# tab-to-space-expanded copy of s
+
+----------------------------------------------------------------------
+s.find(sub[, start[, end]]) -&gt; int
+# lowest index i is s where substring sub is found, -1 if not found.
+
+----------------------------------------------------------------------
+s.format(*args, **kwargs) -&gt; str
+# return copy of s with the {}-format placeholders substituted by arguments
+
+----------------------------------------------------------------------
+s.format_map(mapping) -&gt; str
+# return copy of s with the {}-format placeholders substituted from mapping
+
+----------------------------------------------------------------------
+s.isalnum() -&gt; bool
+# True if all characters are alphanumeric and s is non-empty
+
+----------------------------------------------------------------------
+s.isalpha() -&gt; bool
+# True if all characters are alphabetic and s is non-empty
+
+----------------------------------------------------------------------
+s.isdecimal() -&gt; bool
+# True if all characters are decimal (can form numbers in base 10) and s is non-empty
+
+----------------------------------------------------------------------
+s.isdigit() -&gt; bool
+# True if all characters are digits (includes sub-/superscripts) and s is non-empty
+
+----------------------------------------------------------------------
+s.isidentifier() -&gt; bool
+# True if s qualifies as a valid identifier
+
+----------------------------------------------------------------------
+s.islower() -&gt; bool
+# True if all characters are lowercase and s is non-empty
+
+----------------------------------------------------------------------
+s.isnumeric() -&gt; bool
+# True if all characters are numeric (have Unicode numeric property) and s is non-empty
+
+----------------------------------------------------------------------
+s.isprintable() -&gt; bool
+# True if all characters in S are printable
+
+----------------------------------------------------------------------
+s.isspace() -&gt; bool
+# True is s is all-whitespace and s is non-empty
+
+----------------------------------------------------------------------
+s.istitle() -&gt; bool
+# True is s is titlecased (each word in s starts uppercase and continues
+lowercase) and s is non-empty
+
+----------------------------------------------------------------------
+s.isupper() -&gt; bool
+# True if s is all uppercase
+
+----------------------------------------------------------------------
+s.join(iterable) -&gt; str
+# concatenate the strings in iterable with s as separator
+
+----------------------------------------------------------------------
+s.ljust(width[, fillchar]) -&gt; str
+# return string of length starting with s (&quot;left-justified&quot;), padded with
+# fillchar; doesn&#39;t truncate s if len(s) &gt; width
+
+----------------------------------------------------------------------
+s.lower() -&gt; str
+# return all-lowercase copy of s
+
+----------------------------------------------------------------------
+s.lstrip([chars]) -&gt; str
+# return copy of s with leading whitespace removed, or with each character in
+# chars removed from the beginning of s if chars is not None
+
+----------------------------------------------------------------------
+s.maketrans(x, y=None, z=None) -&gt; dict
+# return translation table dictionary for str.translate(); a single argument
+# must be a ordinal/character-to-ordinal/string/None mapping dictionary; two
+# arguments must be strings of the same length (chars + replacement chars)
+
+----------------------------------------------------------------------
+s.partition(sep) -&gt; (head, sep, tail)
+# return tuple (characters-before-sep, sep, characters-after sep) if separator
+# sep is found, otherwise (s, &#39;&#39;, &#39;&#39;)
+
+----------------------------------------------------------------------
+s.replace(old, new[, count]) -&gt; str
+# copy of s with all occurences (up to count) of substring old replaced by new
+
+----------------------------------------------------------------------
+s.rfind(sub[, start[, end]]) -&gt; int
+# return highest index where sub is found in s (between start and end), i.e.
+# &quot;search from the right&quot;; -1 if sub isn&#39;t found
+
+----------------------------------------------------------------------
+s.rindex(sub[, start[, end]]) -&gt; int
+# return highest index where sub is found in s (between start and end), i.e.
+# &quot;search from the right&quot;; raise ValueError if sub is not found
+
+----------------------------------------------------------------------
+s.rjust(width[, fillchar]) -&gt; str
+# return string of length ending with s (&quot;right-justified&quot;), padded with
+# fillchar; doesn&#39;t truncate s if len(s) &gt; width
+
+----------------------------------------------------------------------
+s.rpartition(sep) -&gt; (head, sep, tail)
+# return tuple (characters-before-sep, sep, characters-after sep) if separator
+# sep is found while searching from the end of s, otherwise (s, &#39;&#39;, &#39;&#39;)
+
+----------------------------------------------------------------------
+s.rsplit(sep=None, maxsplit=-1) -&gt; list of strings
+# split s at separator s (up to maxsplit, searching from the end of s), return
+# the resulting list of words; split at any whitespace if sep is None (the
+# default)
+
+----------------------------------------------------------------------
+s.rstrip([chars]) -&gt; str
+# return copy of s with trailing whitespace removed, or with each character in
+# chars removed from end of s if chars is not None
+
+----------------------------------------------------------------------
+s.split(sep=None, maxsplit=-1) -&gt; list of strings
+# split s at separator s (up to maxsplit, searching from the start of s),
+# return the resulting list of words; split at any whitespace if sep is None 
+# (the default)
+
+----------------------------------------------------------------------
+s.splitlines([keepends]) -&gt; list of strings
+# return list of lines in s split at line boundaries
+
+----------------------------------------------------------------------
+s.startswith(prefix[, start[, end]]) -&gt; bool
+# True is s startswith prefix (can be a tuple of prefixes)
+
+----------------------------------------------------------------------
+s.strip([chars]) -&gt; str
+# return copy of s with leading + trailing whitespace removed, or with each
+# character in start and end of s, if chars is not None
+
+----------------------------------------------------------------------
+s.swapcase() -&gt; str
+# return an case-inverted copy of s
+
+----------------------------------------------------------------------
+s.title() -&gt; str
+# return a titlecased copy of s
+
+----------------------------------------------------------------------
+s.translate(table) -&gt; str
+# return copy of s with all characters replaced according to
+# ordinal-to-ordinal/string/None mapping replacement table 
+
+----------------------------------------------------------------------
+s.upper() -&gt; str
+# return an all-uppercase copy of s
+
+----------------------------------------------------------------------
+s.zfill(width) -&gt; str
+# return s right-justified and padded with zeros; never truncates
+</code></pre></div>
+
+<h4 id="tuples-tuple">Tuples - <code>tuple</code><a class="headerlink" href="#tuples-tuple" title="Permanent link">#</a></h4>
+<p>A Python list is an immutable sequence of arbitrary objects:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;tuples&#39;</span><span class="p">,</span> <span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mf">7.47</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="nb">object</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">tuple</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="s1">&#39;tuples&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+<span class="p">(</span><span class="s1">&#39;tuples&#39;</span><span class="p">,</span> <span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mf">7.47</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+<span class="mi">4</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">(</span><span class="s1">&#39;tuples&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mf">7.47</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="mi">8</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">max</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+<span class="mf">6.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># will raise: 42 is not in this index range</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="nb">tuple</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">tuple</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;objects&#39;</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;types&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s1</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">s1</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<h3 id="mutable-sequences">Mutable Sequences<a class="headerlink" href="#mutable-sequences" title="Permanent link">#</a></h3>
+<h4 id="lists-list">Lists - <code>list</code><a class="headerlink" href="#lists-list" title="Permanent link">#</a></h4>
+<p>A Python list is a mutable sequence of arbitrary objects.</p>
+<p>Common sequence operations on lists:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lists&#39;</span><span class="p">,</span> <span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mf">7.47</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="nb">object</span><span class="p">()]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="s1">&#39;lists&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;lists&#39;</span><span class="p">,</span> <span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mf">7.47</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+<span class="mi">4</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;lists&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mf">7.47</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="mi">8</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">max</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+<span class="mf">6.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># will raise: 42 is not in this index range</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+   <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="mi">42</span> <span class="ow">is</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;objects&#39;</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;types&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s1</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">s1</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<h4 id="additional-operations">Additional Operations<a class="headerlink" href="#additional-operations" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Length of sequence s denoted as N</span>
+<span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>              <span class="c1"># set sequence s index i to x (replacing previous item)</span>
+<span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">iterable</span>     <span class="c1"># replace slice of s from i to j with iterable contents</span>
+<span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">:</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">iterable</span>   <span class="c1"># replace slice of s from i to j with step k with iterable contents</span>
+<span class="n">s</span> <span class="o">+=</span> <span class="n">iterable</span>         <span class="c1"># extend sequence s with iterable contents</span>
+<span class="k">del</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>              <span class="c1"># remove item at i from s</span>
+<span class="k">del</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">]</span>            <span class="c1"># remove items from i to j</span>
+<span class="k">del</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>          <span class="c1"># remove items from i to j, step width k</span>
+<span class="k">del</span> <span class="n">s</span><span class="p">[:]</span>              <span class="c1"># remove all items from s</span>
+<span class="n">s</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>             <span class="c1"># remove all items from s</span>
+<span class="n">s</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>              <span class="c1"># create a shallow copy of s</span>
+<span class="n">s</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>    <span class="c1"># extend sequence s with iterable contents</span>
+<span class="n">s</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>        <span class="c1"># insert x at index i (i.e. before item previously at i)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>              <span class="c1"># remove item at i (default: -1, i.e. last item)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>           <span class="c1"># remove the first item in s that equals x</span>
+<span class="n">s</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>           <span class="c1"># reverse sequence items in-place</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>              <span class="c1"># sort list items in-place; opt. key function + reverse flag</span>
+</code></pre></div>
+
+<p>Additional modifying list operations:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lists&#39;</span><span class="p">,</span> <span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mf">7.47</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="nb">object</span><span class="p">()]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;programs&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;programs&#39;</span><span class="p">,</span> <span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mf">7.47</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="o">&lt;</span><span class="nb">object</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f6b7657e0c0</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;lots of&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;programs&#39;</span><span class="p">,</span> <span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;lots of&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mf">7.47</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span>
+<span class="kc">False</span><span class="p">},</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="o">&lt;</span><span class="nb">object</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f6b7657e0c0</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1999</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2001</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;programs&#39;</span><span class="p">,</span> <span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;lots of&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mi">1999</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2001</span><span class="p">,</span> <span class="mf">7.47</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;on&#39;</span><span class="p">:</span>
+<span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="o">&lt;</span><span class="nb">object</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f6b7657e0c0</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;programs&#39;</span><span class="p">,</span> <span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;lots of&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mi">1999</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nb">object</span>
+<span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f6b7657e0c0</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;lots of&#39;</span><span class="p">,</span> <span class="s1">&#39;objects&#39;</span><span class="p">,</span> <span class="mi">1999</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nb">object</span> <span class="nb">object</span> <span class="n">at</span>
+<span class="mh">0x7f6b7657e0c0</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;contain&#39;</span><span class="p">,</span> <span class="s1">&#39;lots of&#39;</span><span class="p">,</span> <span class="mi">1999</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nb">object</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f6b7657e0c0</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;lots of&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nb">object</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f6b7657e0c0</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">s</span><span class="p">[:]</span>       <span class="c1"># same as s.clear()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">+=</span> <span class="n">s2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">[</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<p><strong>Hint:</strong>
+The Python standard library also provides an <code>array</code>-type where the objects are restricted to be of the same type, see
+<a href="https://docs.python.org/3/library/array.html">Python Arrays</a>.</p>
+<h3 id="dictionaries-dict">Dictionaries - <code>dict</code><a class="headerlink" href="#dictionaries-dict" title="Permanent link">#</a></h3>
+<p>Dictionaries are <em>mapping objects</em>: a collection of objects indexed by key
+values.<sup id="fnref:hashtable"><a class="footnote-ref" href="#fn:hashtable">1</a></sup> Keys must be <em>hashable</em> objects which rules out
+certain mutable objects (e.g. a <code>dict</code> or a <code>set</code> cannot act as a dictionary
+key). </p>
+<p>Since Python 3.7<sup id="fnref:dict-order"><a class="footnote-ref" href="#fn:dict-order">2</a></sup> dictionary order is guaranteed to be insertion order, with
+updating a key not affecting order.</p>
+<p>Dictionaries support the following operations:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># m is a dictionary (a &quot;mapping&quot;)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>                         <span class="c1"># number of items in m</span>
+<span class="n">m</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="nb">object</span>                        <span class="c1"># value for key k in m; KeyError if no k</span>
+<span class="n">m</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>                              <span class="c1"># set value v for key k in mapping</span>
+<span class="k">del</span> <span class="n">m</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>                              <span class="c1"># remove item with key k; KeyError if no k</span>
+<span class="n">k</span> <span class="ow">in</span> <span class="n">m</span> <span class="o">-&gt;</span> <span class="nb">bool</span>                        <span class="c1"># True if k is key in m</span>
+<span class="n">m</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>                     <span class="c1"># empty m i.e. remove all items</span>
+<span class="n">m</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span>                      <span class="c1"># shallow copy of m</span>
+<span class="n">m</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>      <span class="c1"># create dict with keys from iterable,</span>
+                                      <span class="c1"># values set to value.</span>
+<span class="n">m</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">m</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>              <span class="c1"># m[k] if k in m, else d. </span>
+<span class="n">m</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">dict_items</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>            <span class="c1"># iterable set-like object as a view on</span>
+                                      <span class="c1"># m&#39;s items</span>
+<span class="n">m</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">dict_keys</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>              <span class="c1"># iterable set-like object as a view on</span>
+                                      <span class="c1"># m&#39;s keys</span>
+<span class="n">m</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="p">[,</span> <span class="n">d</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">m</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>               <span class="c1"># remove key and return the corresponding</span>
+                                      <span class="c1"># value; raise KeyError if k is not found</span>
+                                      <span class="c1"># unless default d</span>
+<span class="n">m</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>                 <span class="c1"># remove and return (key, value) pair</span>
+                                      <span class="c1">#(LIFO); KeyError if m is empty</span>
+<span class="n">m</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span> <span class="p">[,</span> <span class="n">d</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>  <span class="c1"># Return m[k] if k in d else set D[k] = d</span>
+                                      <span class="c1"># and return d</span>
+<span class="n">m</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">b</span><span class="p">[,</span> <span class="p">]</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>               <span class="c1"># update m from dict/iterable (key,</span>
+                                      <span class="c1"># value)-sequence b and kwargs </span>
+<span class="n">m</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">dict_values</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>          <span class="c1"># iterable object as a view on m&#39;s values</span>
+</code></pre></div>
+
+<p><code>dict</code> example</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Paul&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span> <span class="s1">&#39;profession&#39;</span><span class="p">:</span> <span class="s1">&#39;author&#39;</span><span class="p">}</span>
+<span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Paul&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span> <span class="s1">&#39;profession&#39;</span><span class="p">:</span> <span class="s1">&#39;author&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Paul&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span> <span class="s1">&#39;profession&#39;</span><span class="p">:</span> <span class="s1">&#39;author&#39;</span><span class="p">})</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">dict</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<p><strong><em>dictionary-lookup</em></strong></p>
+<p>Accessing individual elements of a dictionary <code>m</code> is done using the dictionary key-indexing-operator <code>m.[key]</code></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Paul&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span> <span class="s1">&#39;profession&#39;</span><span class="p">:</span> <span class="s1">&#39;author&#39;</span><span class="p">}[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+<span class="s1">&#39;Paul&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<h3 id="sets-set">Sets - <code>set</code><a class="headerlink" href="#sets-set" title="Permanent link">#</a></h3>
+<p>The Python <code>set</code> is a datatype according to the mathematical set theory it therefore is a collection of unique unnamed objects, probably of different types, and a set-operations like <code>union</code>, <code>intersection</code> and others.</p>
+<p>As opposed to the other Python builtin data types, <code>set</code>- type generation can only be done explicitly</p>
+<p><code>set</code>- types generation</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">])</span> <span class="c1"># explicit: &#39;set&#39;- class constructor (1) using &#39;[&#39; &#39;]&#39; brackets</span>
+<span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;foo&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">set</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;foo&#39;</span><span class="p">))</span>  <span class="c1"># explicit: &#39;set&#39;- class constructor (2) using &#39;(&#39; &#39;)&#39; brackets</span>
+<span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;foo&#39;</span><span class="p">}</span>
+</code></pre></div>
+
+<p><code>set</code>-example</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="s1">&#39;foo&#39;</span><span class="p">])</span>   <span class="c1"># simple set with uniqe elements</span>
+<span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="s1">&#39;foo&#39;</span><span class="p">]))</span> <span class="c1"># type of set</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">set</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">])</span>  <span class="c1"># simple set with a non-uniqe element (getting dropped)</span>
+<span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">]))</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">set</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="s1">&#39;foo&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># intersection of 2 sets using &#39;&amp;&#39;-operator</span>
+<span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="s1">&#39;foo&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]))</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">set</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<h3 id="none-none">None - <code>None</code><a class="headerlink" href="#none-none" title="Permanent link">#</a></h3>
+<p>The Python <code>None</code> type is referred to as the <code>Null</code>-Object. It has a builtin contstant named <code>None</code></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kc">None</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">NoneType</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+
+<h3 id="boolean-bool">Boolean <code>bool</code><a class="headerlink" href="#boolean-bool" title="Permanent link">#</a></h3>
+<p>The Python <code>bool</code> type has a two builtin constants named <code>False</code> an <code>True</code></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kc">True</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">bool</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
+
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:hashtable">
+<p>Sometimes such objects are called "hash table" or "associative array".&#160;<a class="footnote-backref" href="#fnref:hashtable" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:dict-order">
+<p>(C)Python 3.6 actually, but then an implementation detail rather than a
+language property.&#160;<a class="footnote-backref" href="#fnref:dict-order" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../objects/" title="Chapter 2: Python Objects" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Chapter 2: Python Objects
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../functions/" title="Chapter 4: Functions" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Chapter 4: Functions
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2020 the <a href="/about/cpycourse-contributors.md">cpycourse contributors</a>.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.36cbf620.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

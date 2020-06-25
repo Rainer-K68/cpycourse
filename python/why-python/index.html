@@ -1,0 +1,1265 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Practical Python training material">
+      
+      
+      
+        <meta name="author" content="Holger Joukl">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.0">
+    
+    
+      
+        <title>Why Python? - Curious Python Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.89dc9fe3.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecd4686e.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#why-should-i-learn-use-python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Curious Python Course" class="md-header-nav__button md-logo" aria-label="Curious Python Course">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Curious Python Course
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Why Python?
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/hjoukl/cpycourse/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hjoukl/cpycourse
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../training/tutorial/" class="md-tabs__link">
+          Training
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../lessons/cmdline-calc/" class="md-tabs__link">
+          Lessons
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../python/" class="md-tabs__link md-tabs__link--active">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../about/curious-python-course/" class="md-tabs__link">
+          About
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Curious Python Course" class="md-nav__button md-logo" aria-label="Curious Python Course">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    Curious Python Course
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/hjoukl/cpycourse/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hjoukl/cpycourse
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Training
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Training" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Training
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/tutorial/" title="Tutorial" class="md-nav__link">
+      Tutorial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Main Course
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Main Course" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Main Course
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/main-course/" title="A Curious Python Main Course" class="md-nav__link">
+      A Curious Python Main Course
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/installation/" title="Chapter 0: Installing Python" class="md-nav__link">
+      Chapter 0: Installing Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/grasping-python/" title="Chapter 1: Grasping Python" class="md-nav__link">
+      Chapter 1: Grasping Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/objects/" title="Chapter 2: Python Objects" class="md-nav__link">
+      Chapter 2: Python Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/builtin-types/" title="Chapter 3: Built-in Types" class="md-nav__link">
+      Chapter 3: Built-in Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/functions/" title="Chapter 4: Functions" class="md-nav__link">
+      Chapter 4: Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/classes-instances/" title="Chapter 5: Classes & Instances" class="md-nav__link">
+      Chapter 5: Classes & Instances
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/flow-control/" title="Chapter 6: Flow Control" class="md-nav__link">
+      Chapter 6: Flow Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/exceptions/" title="Chapter 7: Exceptions" class="md-nav__link">
+      Chapter 7: Exceptions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/io/" title="Chapter 8: (File) Input & Output" class="md-nav__link">
+      Chapter 8: (File) Input & Output
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/context-managers/" title="Chapter 9: Context Managers" class="md-nav__link">
+      Chapter 9: Context Managers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/decorators/" title="Chapter 10: Decorators" class="md-nav__link">
+      Chapter 10: Decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/modules-packages/" title="Chapter 11: Modules & Packages" class="md-nav__link">
+      Chapter 11: Modules & Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/venvs-packages-installation/" title="Chapter 12: Python Environments & Package Installation" class="md-nav__link">
+      Chapter 12: Python Environments & Package Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/main-course/stdlib-tour/" title="Chapter 13: Python Standard Library" class="md-nav__link">
+      Chapter 13: Python Standard Library
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../training/oddjob/" title="Oddjob" class="md-nav__link">
+      Oddjob
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Lessons
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Lessons" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Lessons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lessons/cmdline-calc/" title="Command Line Calculation" class="md-nav__link">
+      Command Line Calculation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lessons/hello-world/" title="Hello World" class="md-nav__link">
+      Hello World
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lessons/list-modify/" title="List Modification" class="md-nav__link">
+      List Modification
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lessons/gen-even-odd/" title="Generate (Un)Even Numbers" class="md-nav__link">
+      Generate (Un)Even Numbers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lessons/rewrite-dict-comp/" title="Rewrite Dict Comprehension" class="md-nav__link">
+      Rewrite Dict Comprehension
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lessons/check-user-input-even/" title="Check User Input Evenness" class="md-nav__link">
+      Check User Input Evenness
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lessons/reverse-words/" title="Reverse Word Order" class="md-nav__link">
+      Reverse Word Order
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lessons/palindroms/" title="Check Palindromes" class="md-nav__link">
+      Check Palindromes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lessons/customer/" title="Customer Class" class="md-nav__link">
+      Customer Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lessons/iter-file/" title="Iterate File" class="md-nav__link">
+      Iterate File
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Python
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python/" title="Python" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Why Python?
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Why Python?" class="md-nav__link md-nav__link--active">
+      Why Python?
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#its-easy-to-use" class="md-nav__link">
+    It's easy to use
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#it-has-many-applications" class="md-nav__link">
+    It has many applications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#it-has-excellent-documentation-a-great-community" class="md-nav__link">
+    It has excellent documentation &amp; a great community
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#it-is-widely-used-usage-is-growing-rapidly" class="md-nav__link">
+    It is widely used &amp; usage is growing rapidly
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#it-is-arguably-the-most-readable-programming-language-for-many" class="md-nav__link">
+    It is (arguably) the most readable programming language (for many)
+  </a>
+  
+    <nav class="md-nav" aria-label="It is (arguably) the most readable programming language (for many)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-hello-world-examples" class="md-nav__link">
+    Some "Hello, world!" examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-history/" title="A brief history of Python" class="md-nav__link">
+      A brief history of Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      About
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="About" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        About
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../about/curious-python-course/" title="Curious Python Course" class="md-nav__link">
+      Curious Python Course
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../about/license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../about/legal/" title="Legal" class="md-nav__link">
+      Legal
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../about/cpycourse-contributors/" title="Contributors" class="md-nav__link">
+      Contributors
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#its-easy-to-use" class="md-nav__link">
+    It's easy to use
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#it-has-many-applications" class="md-nav__link">
+    It has many applications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#it-has-excellent-documentation-a-great-community" class="md-nav__link">
+    It has excellent documentation &amp; a great community
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#it-is-widely-used-usage-is-growing-rapidly" class="md-nav__link">
+    It is widely used &amp; usage is growing rapidly
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#it-is-arguably-the-most-readable-programming-language-for-many" class="md-nav__link">
+    It is (arguably) the most readable programming language (for many)
+  </a>
+  
+    <nav class="md-nav" aria-label="It is (arguably) the most readable programming language (for many)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-hello-world-examples" class="md-nav__link">
+    Some "Hello, world!" examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/hjoukl/cpycourse/edit/master/docs/python/why-python.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="why-should-i-learn-use-python">Why should I learn (+ use) Python?<a class="headerlink" href="#why-should-i-learn-use-python" title="Permanent link">#</a></h1>
+<h2 id="its-easy-to-use">It's easy to use<a class="headerlink" href="#its-easy-to-use" title="Permanent link">#</a></h2>
+<p>Use the power of the <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> and try away:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Python is easy to learn&#39;</span><span class="p">)</span>
+<span class="n">Python</span> <span class="ow">is</span> <span class="n">easy</span> <span class="n">to</span> <span class="n">learn</span>
+</code></pre></div>
+
+<p>Get built-in help:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">help</span><span class="p">()</span>
+
+<span class="n">Welcome</span> <span class="n">to</span> <span class="n">Python</span> <span class="mf">3.6</span><span class="s1">&#39;s help utility!</span>
+
+<span class="n">If</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">your</span> <span class="n">first</span> <span class="n">time</span> <span class="n">using</span> <span class="n">Python</span><span class="p">,</span> <span class="n">you</span> <span class="n">should</span> <span class="n">definitely</span> <span class="n">check</span> <span class="n">out</span>
+<span class="n">the</span> <span class="n">tutorial</span> <span class="n">on</span> <span class="n">the</span> <span class="n">Internet</span> <span class="n">at</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mf">3.6</span><span class="o">/</span><span class="n">tutorial</span><span class="o">/.</span>
+
+<span class="n">Enter</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="nb">any</span> <span class="n">module</span><span class="p">,</span> <span class="n">keyword</span><span class="p">,</span> <span class="ow">or</span> <span class="n">topic</span> <span class="n">to</span> <span class="n">get</span> <span class="n">help</span> <span class="n">on</span> <span class="n">writing</span>
+<span class="n">Python</span> <span class="n">programs</span> <span class="ow">and</span> <span class="n">using</span> <span class="n">Python</span> <span class="n">modules</span><span class="o">.</span>  <span class="n">To</span> <span class="n">quit</span> <span class="n">this</span> <span class="n">help</span> <span class="n">utility</span> <span class="ow">and</span>
+<span class="k">return</span> <span class="n">to</span> <span class="n">the</span> <span class="n">interpreter</span><span class="p">,</span> <span class="n">just</span> <span class="nb">type</span> <span class="s2">&quot;quit&quot;</span><span class="o">.</span>
+
+<span class="n">To</span> <span class="n">get</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">available</span> <span class="n">modules</span><span class="p">,</span> <span class="n">keywords</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="ow">or</span> <span class="n">topics</span><span class="p">,</span> <span class="nb">type</span>
+<span class="s2">&quot;modules&quot;</span><span class="p">,</span> <span class="s2">&quot;keywords&quot;</span><span class="p">,</span> <span class="s2">&quot;symbols&quot;</span><span class="p">,</span> <span class="ow">or</span> <span class="s2">&quot;topics&quot;</span><span class="o">.</span>  <span class="n">Each</span> <span class="n">module</span> <span class="n">also</span> <span class="n">comes</span>
+<span class="k">with</span> <span class="n">a</span> <span class="n">one</span><span class="o">-</span><span class="n">line</span> <span class="n">summary</span> <span class="n">of</span> <span class="n">what</span> <span class="n">it</span> <span class="n">does</span><span class="p">;</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">the</span> <span class="n">modules</span> <span class="n">whose</span> <span class="n">name</span>
+<span class="ow">or</span> <span class="n">summary</span> <span class="n">contain</span> <span class="n">a</span> <span class="n">given</span> <span class="n">string</span> <span class="n">such</span> <span class="k">as</span> <span class="s2">&quot;spam&quot;</span><span class="p">,</span> <span class="nb">type</span> <span class="s2">&quot;modules spam&quot;</span><span class="o">.</span>
+
+<span class="n">help</span><span class="o">&gt;</span> 
+</code></pre></div>
+
+<p><strong>Scale</strong> from simple, one-off scripts or even command line one-liners to
+<strong>world-class applications</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import math; print(math.sqrt(2))&#39;</span>
+<span class="mf">1.4142135623730951</span>
+</code></pre></div>
+
+<p>Amongst many others, Dropbox, Google, Instagram, Spotify and YouTube <a href="https://codeinstitute.net/blog/7-popular-software-programs-written-in-python/">have been
+known to run parts of their stack with Python</a>,
+sometimes <em>primarily</em> using Python.</p>
+<p>Python also played an important role in <a href="https://www.blog.pythonlibrary.org/2019/04/11/python-used-to-take-photo-of-black-hole/">getting the 1<sup>st</sup> ever black hole
+image</a>
+in 2019.</p>
+<h2 id="it-has-many-applications">It has many applications<a class="headerlink" href="#it-has-many-applications" title="Permanent link">#</a></h2>
+<p>Python is</p>
+<ul>
+<li>useful in many domains, from simple scripts to building web applications to
+   image processing, number crunching and data science (and many many more)</li>
+<li>an excellent "glue language":<ul>
+<li>easy integration of C/C++ code (or Rust, Go, Fortran, ...)</li>
+</ul>
+</li>
+<li>a great rapid prototyping language:<ul>
+<li>succinct</li>
+<li>no lengthy compilation</li>
+<li>a lot of "batteries included" (i.e. extensive standard library)</li>
+</ul>
+</li>
+<li>extensible, i.e. in the need for speed you can write performance critical
+   code as e.g. a C extension (but more often than not Python is just fast 
+   enough, anyway)</li>
+</ul>
+<h2 id="it-has-excellent-documentation-a-great-community">It has excellent documentation &amp; a great community<a class="headerlink" href="#it-has-excellent-documentation-a-great-community" title="Permanent link">#</a></h2>
+<p>Simply take at look at <a href="https://docs.python.org/">https://docs.python.org/</a> and
+<a href="https://www.python.org/community/">https://www.python.org/community/</a>.</p>
+<h2 id="it-is-widely-used-usage-is-growing-rapidly">It is widely used &amp; usage is growing rapidly<a class="headerlink" href="#it-is-widely-used-usage-is-growing-rapidly" title="Permanent link">#</a></h2>
+<ul>
+<li>Currently the fastest growing / dominant language? Python<ul>
+<li>ranks no. 1 on the <a href="http://pypl.github.io/PYPL.html">PYPL PopularitY of Programming Language</a> index (06/2020)</li>
+<li>ranks no. 2 (behind JavaScript) on the <a href="https://redmonk.com/sogrady/2020/02/28/language-rankings-1-20/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=language-rankings-1-20">Redmonk Programming Language Rankings</a> (01/2020)</li>
+<li>ranks no. 2 (behind JavaScript) in the <a href="https://octoverse.github.com/#top-languages">GitHub octoverse report top languages</a> (2019)</li>
+</ul>
+</li>
+<li>huge uptake since around 2012-2014 in the scientific community and data
+  science:<ul>
+<li>machine learning</li>
+<li>AI</li>
+<li>statistical computing</li>
+</ul>
+</li>
+<li>known to e.g. replace R and Matlab applications due to being<ul>
+<li>user friendly and easy to learn,</li>
+<li>more flexible, extensible &amp; general-purpose (i.e. apart from the data
+  science-specific necessities the huge Python ecosystem of standard
+  library and 3<sup>rd</sup> party libraries is at your hands)</li>
+<li>used by a large and growing community</li>
+</ul>
+</li>
+<li>may soon be the primary language of choice in the data science field (if it
+  isn't already)</li>
+</ul>
+<h2 id="it-is-arguably-the-most-readable-programming-language-for-many">It is (arguably) the most readable programming language (for many)<a class="headerlink" href="#it-is-arguably-the-most-readable-programming-language-for-many" title="Permanent link">#</a></h2>
+<p>(Take this with more than a grain of salt - beauty is all in the eye of the
+beholder <img alt="😉" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f609.svg" title=":wink:" />)</p>
+<p>Readability is key:</p>
+<ul>
+<li>source code is read <em>way</em> more often than written (as in: reading other
+   people's code for learning or review, reading your own code for 
+   refactoring/debugging/understanding what you did last month, ...)</li>
+<li>Python is "executable pseudocode" (to some):
+        <div class="highlight"><pre><span></span><code><span class="c1"># pseudocode</span>
+<span class="n">x</span> <span class="o">:=</span> <span class="mi">1</span>
+<span class="n">IF</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">THEN</span>
+    <span class="nb">print</span> <span class="s2">&quot;positive&quot;</span> 
+<span class="n">ELSE</span>
+    <span class="nb">print</span> <span class="s2">&quot;negative or 0&quot;</span> 
+<span class="n">END</span> <span class="n">IF</span>
+
+
+<span class="c1"># python</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;positive&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;negative or 0&quot;</span><span class="p">)</span>
+</code></pre></div></li>
+<li>Python uses significant whitespace (indentation) for grouping code blocks
+   (rather than {} braces), which makes it very readable for most 
+   people<sup id="fnref:python-whitespace"><a class="footnote-ref" href="#fn:python-whitespace">1</a></sup></li>
+</ul>
+<h3 id="some-hello-world-examples">Some "Hello, world!" examples<a class="headerlink" href="#some-hello-world-examples" title="Permanent link">#</a></h3>
+<p>To each their own...</p>
+<div class="tabbed-set" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Python</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">C</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello, world!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">C++</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello, world!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><label for="__tabbed_1_4">Java</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Hello</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><label for="__tabbed_1_5">Go</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><label for="__tabbed_1_6">Rust</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;Hello, world&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+</div>
+</div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:python-whitespace">
+<p>Though there's die-hard non-believers that will always hate this <img alt="😉" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f609.svg" title=":wink:" />&#160;<a class="footnote-backref" href="#fnref:python-whitespace" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../python/" title="Python" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Python
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../python-history/" title="A brief history of Python" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                A brief history of Python
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2020 the <a href="/about/cpycourse-contributors.md">cpycourse contributors</a>.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.36cbf620.min.js"></script>
+      <script src="../../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
